@@ -1,0 +1,30 @@
+<h2 *ngIf="!todos.length" id="todos-empty">
+  <i class="ion-beer"></i>
+  you don't have any todo right now!
+</h2>
+<h2 *ngIf="todos.length">Todos list</h2>
+<ul id="todosList">
+  <li *ngFor="let todo of todos">
+    <div class="pure-g">
+      <div class="pure-u-3-24">
+        <a href="#" (click)="toggleTodoStatus(todo)" title="{{ getStatusTitle(todo) }}">
+          <i class="complete-btn" [ngClass]="{ 'ion-ios-circle-outline': !todo.completed, 'ion-checkmark-circled': todo.completed }"></i>
+        </a>
+      </div>
+      <div class="pure-u-19-24 todo-label-container">
+          <span [ngClass]="{ 'todo-completed': todo.completed }">{{ todo.label }}</span>
+          <span class="todo-date">
+            {{ getTodoDate(todo.ts) }}
+            <span *ngIf="todo.completed">
+              - completed on {{ getTodoDate(todo.completionDate) }}
+            </span>
+          </span>
+      </div>
+      <div class="pure-u-1-24">
+        <a href="#" (click)="deleteTodo(todo)" title="Delete">
+          <i class="ion-ios-close-outline"></i>
+        </a>
+      </div>
+    </div>
+  </li>
+</ul>
