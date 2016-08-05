@@ -11,13 +11,28 @@ import { Utils }                        from './../../services/utils.factory';
 export class TodoList implements OnInit {
 
   @Input() todos: Todo[];
+  showCompleted: boolean = true;
+  completed: number = 0;
 
   constructor(private window: Window, private ts: TodoService, private utils: Utils) {}
 
   ngOnInit() {
-    this.ts.todoSync.subscribe(
-      todos => this.todos
-    );
+    this.countCompleted();
+    this.ts.todoSync.subscribe(todos => {
+      this.todos = todos;
+      this.countCompleted();
+    });
+  }
+
+  countCompleted() {
+    this.completed = 0;
+    if(this.todos && this.todos.length) {
+      this.todos.forEach((t) => {
+        if(t.completed) {
+          this.completed++;
+        }
+      });
+    }
   }
 
   deleteTodo(t: Todo) {
@@ -46,5 +61,9 @@ export class TodoList implements OnInit {
     if(t) {
       this.ts.toggleTodoStatus(t);
     }
+  }
+
+  toggleShowCompleted() {
+    this.showCompleted = !this.showCompleted
   }
 }
