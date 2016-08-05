@@ -10,4 +10,4 @@ These days at [Vivocha](http://www.vivocha.com/) we're starting to use angular2,
 * basic services
 * some typescript good habits (interfaces, for example)
 
-### enjoy.
+### enjoy! - [DEMO](http://gianfranco-frau.com/ng2Todo/)
