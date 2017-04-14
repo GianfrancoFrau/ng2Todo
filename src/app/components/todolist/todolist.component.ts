@@ -14,7 +14,7 @@ export class TodoList implements OnInit {
   showCompleted: boolean = true;
   completed: number = 0;
 
-  constructor(@Inject(Window) private window: Window, private ts: TodoService, private utils: Utils) {}
+  constructor(private ts: TodoService, private utils: Utils) {}
 
   ngOnInit() {
     this.countCompleted();

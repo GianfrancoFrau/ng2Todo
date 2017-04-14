@@ -12,7 +12,7 @@ export class AppComponent implements OnInit {
 
   todos = [];
 
-  constructor(@Inject(Window) private window: Window, private ts: TodoService) {
+  constructor(private ts: TodoService) {
     this.todos = this.ts.getAll();
   }
 

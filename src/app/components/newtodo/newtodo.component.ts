@@ -10,7 +10,7 @@ export class NewTodo {
 
   @ViewChild('todoLabel') todoLabel;
 
-  constructor(@Inject(Window) private window: Window, private ts: TodoService) {}
+  constructor(private ts: TodoService) {}
 
   handleKeypress($event) {
     if($event.keyCode === 13) {
