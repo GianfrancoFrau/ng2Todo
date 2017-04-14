@@ -1,16 +1,16 @@
-import { Component, ViewChild }   from '@angular/core';
+import { Component, ViewChild, Inject }   from '@angular/core';
 import { TodoService }            from './../../services/todo.service';
 
 @Component({
   selector: 'new-todo',
-  template: require('./newtodo.component.html'),
-  styles:   [require('./newtodo.component.css')]
+  templateUrl: './newtodo.component.html',
+  styleUrls:   ['./newtodo.component.css']
 })
 export class NewTodo {
 
   @ViewChild('todoLabel') todoLabel;
 
-  constructor(private window: Window, private ts: TodoService) {}
+  constructor(@Inject(Window) private window: Window, private ts: TodoService) {}
 
   handleKeypress($event) {
     if($event.keyCode === 13) {

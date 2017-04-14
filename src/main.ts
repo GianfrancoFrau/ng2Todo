@@ -1,15 +1,11 @@
-import { bootstrap }                  from '@angular/platform-browser-dynamic';
-import { enableProdMode, provide }    from '@angular/core';
-import { HTTP_PROVIDERS }             from '@angular/http';
-import { AppComponent }               from './app.component';
-import { TodoService }                from './app/services/todo.service';
-import { Utils }                      from './app/services/utils.factory';
+import { enableProdMode } from '@angular/core';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
-enableProdMode();
+import { AppModule } from './app/app.module';
+import { environment } from './environments/environment';
 
-bootstrap(AppComponent, [
-  provide(Window, { useValue: window }),
-  HTTP_PROVIDERS,
-  TodoService,
-  Utils
-]);
+if (environment.production) {
+  enableProdMode();
+}
+
+platformBrowserDynamic().bootstrapModule(AppModule);

@@ -1,5 +1,5 @@
-import { Injectable, EventEmitter } from '@angular/core';
-import { Todo }                     from "./../interfaces/todo.interface.ts";
+import { Injectable, EventEmitter, Inject} from '@angular/core';
+import { Todo }                     from "./../interfaces/todo.interface";
 
 @Injectable()
 export class TodoService {
@@ -7,7 +7,7 @@ export class TodoService {
   todos = [];
   todoSync: EventEmitter<any> = new EventEmitter();
 
-  constructor(private window: Window) {
+  constructor(@Inject(Window) private window: Window) {
     let _t = this.window.localStorage.getItem('todos');
     let todos = _t ? JSON.parse(_t) : []
     if(todos.length) {

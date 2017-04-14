@@ -1,12 +1,12 @@
-import { Component, OnInit, Input }     from '@angular/core';
-import { Todo }                         from "./../../interfaces/todo.interface.ts";
+import { Component, OnInit, Input, Inject }     from '@angular/core';
+import { Todo }                         from "./../../interfaces/todo.interface";
 import { TodoService }                  from './../../services/todo.service';
-import { Utils }                        from './../../services/utils.factory';
+import { Utils }                        from './../../services/utils.service';
 
 @Component({
   selector:   'todos-list',
-  template:   require('./todolist.component.html'),
-  styles:     [require('./todolist.component.css')]
+  templateUrl:   './todolist.component.html',
+  styleUrls:     ['./todolist.component.css']
 })
 export class TodoList implements OnInit {
 
@@ -14,7 +14,7 @@ export class TodoList implements OnInit {
   showCompleted: boolean = true;
   completed: number = 0;
 
-  constructor(private window: Window, private ts: TodoService, private utils: Utils) {}
+  constructor(@Inject(Window) private window: Window, private ts: TodoService, private utils: Utils) {}
 
   ngOnInit() {
     this.countCompleted();
