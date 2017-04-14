@@ -7,8 +7,8 @@ export class TodoService {
   todos = [];
   todoSync: EventEmitter<any> = new EventEmitter();
 
-  constructor(@Inject(Window) private window: any) {
-    let _t = this.window.localStorage.getItem('todos');
+  constructor() {
+    let _t = window.localStorage.getItem('todos');
     let todos = _t ? JSON.parse(_t) : []
     if(todos.length) {
       this.todos = todos;
@@ -20,7 +20,7 @@ export class TodoService {
   }
 
   sync() {
-    this.window.localStorage.setItem('todos', JSON.stringify(this.todos));
+    window.localStorage.setItem('todos', JSON.stringify(this.todos));
     this.todoSync.emit(this.todos);
   }
 

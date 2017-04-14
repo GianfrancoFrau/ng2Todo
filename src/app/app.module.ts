@@ -22,8 +22,7 @@ import { Utils }          from './services/utils.service'
   ],
   providers: [
     TodoService,
-    Utils,
-    { provide: Window, useValue: window }
+    Utils
   ],
   bootstrap: [AppComponent]
 })
